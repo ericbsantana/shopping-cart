@@ -15,7 +15,7 @@ const Main = (props) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:3001/${props.cart}`);
+        const response = await axios.get(`/${props.cart}`);
 
         setData(response.data);
         setLoading(false);
@@ -42,7 +42,7 @@ const Main = (props) => {
     });
 
   return (
-    <div className="lg:w-1/3 shadow-xl rounded-lg bg-white mb-10 ">
+    <div className="mx-2 lg:w-1/3 shadow-xl rounded-lg bg-white mb-10 ">
       <h1 className="lg:w-full py-2 text-lg text-center border-b font-bold">
         Meu carrinho
       </h1>
@@ -69,6 +69,7 @@ const Main = (props) => {
         )}
         <ul className="border-b padding-5 border-gray-200">
           {!loading &&
+            !error &&
             data.items.map((item) => (
               <CartItem
                 key={item.uniqueId}
@@ -87,7 +88,7 @@ const Main = (props) => {
         )}
         {!loading && calculateTotal().dollars() > 10 && (
           <div className="flex flex-col justify-center content-center items-center">
-            <span className="w-3/4 rounded-full bg-green-200 text-green-800 py-2 px-3 m-5 text-center">
+            <span className="text-sm md:text-base w-3/4 rounded-full bg-green-200 text-green-800 py-2 px-3 m-5 text-center ">
               Parabéns, sua compra tem frete grátis!
             </span>
           </div>
