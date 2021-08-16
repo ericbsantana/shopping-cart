@@ -17,7 +17,7 @@ const App = () => {
         className="bg-blue-500 text-white shadow-md px-5 py-2 m-5 rounded-md font-bold hover:bg-blue-600 active:bg-blue-700"
         onClick={toggleCart}
       >
-        Change between carts
+        Trocar entre carrinhos
       </button>
       <Main cart={cart} />
     </div>
