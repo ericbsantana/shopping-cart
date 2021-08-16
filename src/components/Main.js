@@ -1,4 +1,5 @@
 import CartItem from "./CartItem";
+import Modal from "./Modal";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
@@ -10,6 +11,7 @@ const Main = (props) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +45,7 @@ const Main = (props) => {
 
   return (
     <div className="mx-2 lg:w-1/3 shadow-xl rounded-lg bg-white mb-10 ">
+      <Modal showModal={showModal} setShowModal={setShowModal} />
       <h1 className="lg:w-full py-2 text-lg text-center border-b font-bold">
         Meu carrinho
       </h1>
@@ -88,7 +91,7 @@ const Main = (props) => {
         )}
         {!loading && calculateTotal().dollars() > 10 && (
           <div className="flex flex-col justify-center content-center items-center">
-            <span className="text-sm md:text-base w-3/4 rounded-full bg-green-200 text-green-800 py-2 px-3 m-5 text-center ">
+            <span className="text-xs md:text-base w-3/4 rounded-full bg-green-200 text-green-800 py-2 px-3 m-5 text-center ">
               Parabéns, sua compra tem frete grátis!
             </span>
           </div>
@@ -99,6 +102,7 @@ const Main = (props) => {
             type="button"
             className="w-full bg-blue-500 text-white shadow-md px-5 py-2 m-5 rounded-md font-bold hover:bg-blue-600 active:bg-blue-700"
             disabled={loading}
+            onClick={() => setShowModal(true)}
           >
             Finalizar compra
           </button>
